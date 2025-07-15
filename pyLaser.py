@@ -173,7 +173,7 @@ class pyLaser(QObject):
             self.write(0x01, 0x03, 0x008e, 0x0001)
         else:
             if arg[0]:
-                self.write(0x01, 0x10, 0x008e, 0x0001, 0x01)
+                self.write(0x01, 0x10, reg=0x008e, dl=0x0001, d=0x01)
             else:
                 self.write(0x01, 0x10, 0x008e, 0x0001, 0x00)
         return str(int.from_bytes(self.read(1)["data"], 'big') & 1)
@@ -186,7 +186,7 @@ class pyLaser(QObject):
         return str(int.from_bytes(self.read(0)["data"], 'big') & 1)
 
     def _setTecTemp(self, arg):
-        self.write(0x01, 0x10, 0x0072, 0x0004, arg[0], cf=1)
+        self.write(slave=0x01, func=0x10, reg=0x0072, dl=0x0004, d=arg[0], cf=1)
         return "{:.2f}".format(struct.unpack('>f', self.read(4)["data"])[0])
 
     def _setLdCur(self, arg):
