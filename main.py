@@ -18,17 +18,19 @@
 import sys
 import os
 
+# ✅ Third-party imports
 from PySide2.QtGui import QGuiApplication, QIcon
 from PySide2.QtQml import QQmlApplicationEngine
 from PySide2.QtCore import QUrl
 
+# ✅ Local imports
 import pyLaser
+import resources.resources  # noqa: F401  # This is needed to load the resources.qrc file
 
 if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     app.setOrganizationName("Chilas Lasers B.V.")
-    icon_path = os.path.join(os.path.dirname(__file__), "icon.ico")
-    app.setWindowIcon(QIcon(icon_path))
+    app.setWindowIcon(QIcon(":/icons/icon"))
 
     engine = QQmlApplicationEngine()
 
