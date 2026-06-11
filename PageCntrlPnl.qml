@@ -96,6 +96,7 @@ Pane {
                                         timerGLd.restart()
                                         timerGTecCur.restart()
                                         timerGStatus.restart()
+                                        statusInit.active = true
                                         spinBoxTec.value = spinBoxTec.decimalToInt(parseFloat(backend._executor('_getTecTempSet')))
                                         spinBoxLd.value = spinBoxLd.decimalToInt(parseFloat(backend._executor('_getLdCurSet')))
                                         comWait.start()
@@ -111,8 +112,8 @@ Pane {
                                         timerGTecCur.stop()
                                         timerGStatus.stop()
                                         statusInit.active = false
-                                        statusNormal.active = false
-                                        statusAbnormal.active = false
+                                        statusLD.active = false
+                                        statusTEC.active = false
 
                                     } else {
                                         checked = true
@@ -469,33 +470,33 @@ Pane {
                             }
                         }
                         Column {
-                            id: colNormal
+                            id: colTEC
                             width: 98
                             spacing: 10
 
                             Text {
-                                text: "Normal"
+                                text: "TEC"
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 font.pointSize: 10
                             }
                             StatusIndicator {
-                                id: statusNormal
+                                id: statusTEC
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 color: 'green'
                             }
                         }
                         Column {
-                            id: colAbnormal
+                            id: colLD
                             width: 98
                             spacing: 10
 
                             Text {
-                                text: "Abnormal"
+                                text: "Laser Diode"
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 font.pointSize: 10
                             }
                             StatusIndicator {
-                                id: statusAbnormal
+                                id: statusLD
                                 anchors.horizontalCenter: parent.horizontalCenter
                                 color: 'red'
                             }
@@ -510,17 +511,12 @@ Pane {
                             property int stat: 0
                             onTriggered: {
                                 stat = backend._executor('_getDevStat')
-                                if (stat === 7) {
-                                    statusInit.active = false
-                                    statusNormal.active = true
-                                    statusAbnormal.active = false
-                                    buttonLd.checked = true
-                                } else {
-                                    statusInit.active = stat & 1
-                                    statusNormal.active = false
-                                    statusAbnormal.active = false
-                                }
+                                statusTEC.active = stat & 2
+                                statusLD.active = stat & 4
                                 buttonLd.checked = stat & 4
+                                if (statusTEC.active & statusLD.active) {
+                                    statusInit.active = false
+                                }
                             }
                         }
                     }

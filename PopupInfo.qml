@@ -42,7 +42,7 @@ Popup {
         }
 
         Text {
-            text: "Chilas Polaris is an open-source application that helps users control laser via serial commands."
+            text: "Chilas Polaris is an open-source application."
             wrapMode: Text.Wrap
             width: parent.width
         }
