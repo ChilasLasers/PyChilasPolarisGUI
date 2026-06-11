@@ -4,6 +4,7 @@ Script to create a standalone binary executable for the Chilas Polaris applicati
 
 import PyInstaller.__main__
 from PySide2.QtWidgets import QApplication, QFileDialog
+from PySide2.scripts.pyside_tool import rcc
 import os
 
 app = QApplication()
@@ -23,11 +24,11 @@ PyInstaller.__main__.run(
         "--windowed",
         "--icon=resources\\icons\\icon.ico",
         "--add-data",
-        f"resources\\images\\background.png;.",
+        f"background.png;.",
         "--add-data",
-        f"resources\\images\\chilas_logo.png;.",
+        f"chilas_logo.png;.",
         "--add-data",
-        f"resources\\images\\polaris_logo.png;.",
+        f"polaris_logo.png;.",
         "--add-data",
         f"Control.qml;.",
         "--add-data",

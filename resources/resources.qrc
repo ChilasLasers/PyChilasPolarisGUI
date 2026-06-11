@@ -1,10 +1,5 @@
 <!DOCTYPE RCC>
 <RCC version="1.0">
-    <qresource prefix="images">
-        <file alias="background">images/background.png</file>
-        <file alias="chilas_logo">images/chilas_logo.png</file>
-        <file alias="polaris_logo">images/polaris_logo.png</file>
-    </qresource>
     <qresource prefix="icons">
         <file alias="icon">icons/icon.ico</file>
     </qresource>

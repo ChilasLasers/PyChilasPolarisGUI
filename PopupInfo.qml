@@ -36,7 +36,7 @@ Popup {
         spacing: 10
 
         Text {
-            text: "Chilas Polaris v1.0"
+            text: "Chilas Polaris v1.0.1"
             font.bold: true
             width: parent.width
         }
